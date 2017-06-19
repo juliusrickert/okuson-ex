@@ -1,0 +1,190 @@
+% This is based upon the template of  CSharp_McFragen_Generator from http://s-inf.de/#Diskrete
+\documentclass[12pt,a4paper]{article}
+\usepackage[cm]{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{seqsplit}
+
+\title{Lineare Algebra - Kombinierte Aufgaben}
+
+\newlist{multipleChoice}{itemize}{1}
+\setlist[multipleChoice]{label=$\square$}
+\newlist{choice}{itemize}{1}
+\setlist[choice]{label=$\circ$}
+
+\setlength{\fboxsep}{7pt}
+        \newcommand{\booktitle}[1]{\textsl{#1}}                                                            % booknames in slanted letters
+        \newcommand{\eigenname}[1]{\textsc{#1}}                                                            % names in capital letters
+        \newcommand{\newnotion}[1]{\textit{#1}}                                                            % new notions in italic letters
+
+        \newenvironment{smallpmatrix}{\left( \begin{smallmatrix}}{\end{smallmatrix} \right)}               % small matrices with round brackets
+
+        \DeclareMathOperator{\characteristic}{\mathrm{char}}                                               % characteristic
+        \DeclareMathOperator{\Cokernel}{\mathrm{Coker}}                                                    % cokernel of a homomorphism
+        \DeclareMathOperator{\defect}{\mathrm{def}}                                                        % defect of a vector space homomorphism
+        \DeclareMathOperator{\Graph}{\mathrm{Graph}}                                                       % graph of a map
+        \DeclareMathOperator{\Image}{\mathrm{Im}}                                                          % image of a homomorphism
+        \DeclareMathOperator{\Kernel}{\mathrm{Ker}}                                                        % kernel of a homomorphism
+        \DeclareMathOperator{\length}{\mathrm{lth}}                                                        % length of a cycle
+        \DeclareMathOperator{\rank}{\mathrm{rk}}                                                           % rank of a vector space homomorphism
+        \DeclareMathOperator{\sgn}{\mathrm{sgn}}                                                           % sign
+        \DeclareMathOperator{\Source}{\mathrm{Source}}                                                     % source of a map
+        \DeclareMathOperator{\Support}{\mathrm{Supp}}                                                      % support
+        \DeclareMathOperator{\Target}{\mathrm{Target}}                                                     % target of a map
+        \DeclareMathOperator{\trace}{\mathop{tr}}                                                          % trace
+        \newcommand{\AbGrp}{\mathbf{AbGrp}}                                                                % category of abelian groups
+        \newcommand{\Adjugate}{\mathrm{Adj}}                                                               % adjugate matrix
+        \newcommand{\algebraicmultiplicity}{\mathrm{m}}                                                    % algebraic multiplicity of eigenvalue
+        \newcommand{\AlternatingGroup}[1]{\mathrm{A}_{#1}}                                                 % alternating group
+        \newcommand{\AutomorphismGroup}{\mathrm{Aut}}                                                      % automorphism group
+        \newcommand{\Ball}{\mathrm{B}}                                                                     % ball
+        \newcommand{\bigcart}{\times}                                                                      % cartesian product over a family
+        \newcommand{\bigcomp}{\circ}                                                                       % composition over a family
+        \newcommand{\bigdirectsum}{\bigoplus}                                                              % direct sum over a family
+        \newcommand{\bigdisjointunion}{\bigsqcup}                                                          % disjoint union over a family
+        \newcommand{\biginnerdirectsum}{\mathop{\dot{\sum}}\displaylimits}                                 % inner direct sum over a family
+        \newcommand{\biginnerdisjointunion}{\mathop{\dot{\bigcup}}\displaylimits}                          % inner disjoint union over a family
+        \newcommand{\bigintersection}{\bigcap}                                                             % intersection over a family
+        \newcommand{\bigunion}{\bigcup}                                                                    % union over a family
+        \newcommand{\BilinearFormOfMatrix}[1]{\beta_{#1}}                                                  % bilinear form of a matrix
+        \newcommand{\cart}{\times}                                                                         % cartesian product
+        \newcommand{\characteristicpolynomial}{\upchi}                                                     % characteristic polynomial
+        \newcommand{\ColumnInterpretation}[1]{\varphi_{#1}}                                                % column interpretation of a matrix
+        \newcommand{\ColumnSpace}{\mathrm{Col}}                                                            % column space
+        \newcommand{\Combinations}{\mathrm{Comb}}                                                          % set of combinations
+        \newcommand{\comp}{\circ}                                                                          % composition
+        \newcommand{\CompanionMatrix}{\mathrm{C}}                                                          % companion matrix
+        \newcommand{\Complexes}{\mathbb{C}}                                                                % set of complex numbers
+        \newcommand{\complexconjugate}[1]{\overline{#1}}                                                   % complex conjugate
+        \newcommand{\congruent}{\equiv}                                                                    % congruent
+        \newcommand{\Continuous}[1][]{\mathrm{C}^{#1}}                                                     % set of continuous maps
+        \newcommand{\coordinatecolumn}[1]{\kappa_{#1}}                                                     % coordinate column
+        \newcommand{\dif}{\,\mathrm{d}}                                                                    % differential
+        \newcommand{\DifferentialOperator}{\mathrm{D}}                                                     % differential operator
+        \newcommand{\directsum}{\oplus}                                                                    % binary direct sum
+        \newcommand{\distance}{\mathrm{d}}                                                                 % distance
+        \newcommand{\divides}{\mid}                                                                        % divides
+        \newcommand{\Edges}{\mathrm{E}}                                                                    % set of edges in a graph
+        \newcommand{\Eigenspace}{\mathrm{Eig}}                                                             % eigenspace
+        \newcommand{\emb}{\mathrm{emb}}                                                                    % embedding
+        \newcommand{\End}{\mathrm{End}}                                                                    % monoid of endomorphisms
+        \newcommand{\equivkernel}[1]{\mathrel{=_{#1}}}                                                     % equivalence kernel
+        \newcommand{\ev}{\mathrm{ev}}                                                                      % evaluation homomorphism
+        \newcommand{\evaluationhomomorphism}[1]{\varepsilon_{#1}}                                          % evaluation homomorphism
+        \newcommand{\ExpandedCoefficientMatrix}[2]{<![CDATA[\left( \!\!\! \begin{array}{c|c} {#1} & {#2} \end{array} \!\!\! \right)]]>} % expanded coefficient matrix
+        \newcommand{\fractionequal}{\equiv}                                                                % fraction equal
+        \newcommand{\GaloisField}[1]{\mathbb{F}_{#1}}                                                      % Galois field
+        \newcommand{\GeneralLinearGroup}{\mathrm{GL}}                                                      % general linear group
+        \newcommand{\generatorfeight}{\beta}                                                               % generator of F8
+        \newcommand{\generatorffour}{\alpha}                                                               % generator of F4
+        \newcommand{\generatorfnine}{\iota}                                                                % generator of F9
+        \newcommand{\geometricmultiplicity}{\mathrm{g}}                                                    % geometric multiplicity of eigenvalue
+        \newcommand{\GramMatrix}[2]{\mathrm{G}{_{#1}(#2)}}                                                 % Gram matrix of a sesquilinear form
+        \newcommand{\Hom}{\mathrm{Hom}}                                                                    % set of homomorphisms
+        \newcommand{\id}{\mathrm{id}}                                                                      % identity map
+        \newcommand{\IdentityMatrix}[1][]{\mathrm{E}_{#1}}                                                 % identity matrix
+        \newcommand{\im}{\mathrm{i}}                                                                       % imaginary unit
+        \newcommand{\inc}{\mathrm{inc}}                                                                    % inclusion
+        \newcommand{\indicatorfamily}{\chi}                                                                % indicator family
+        \newcommand{\indicatorfunction}{\chi}                                                              % indicator function
+        \newcommand{\innerdirectsum}{\mathbin{\dot{+}}}                                                    % inner direct sum
+        \newcommand{\innerdisjointunion}{\mathbin{\dot{\cup}}}                                             % inner disjoint union
+        \newcommand{\Integers}{\mathbb{Z}}                                                                 % set of integers
+        \newcommand{\InterpolationSet}{\mathrm{Intpol}}                                                    % set of interpolations
+        \newcommand{\intersection}{\cap}                                                                   % intersection
+        \newcommand{\InversionPairs}{\mathrm{Inv}}                                                         % inversion pairs of a permutation
+        \newcommand{\isomorphic}{\cong}                                                                    % isomorphic
+        \newcommand{\kdelta}{\delta}                                                                       % Kronecker delta
+        \newcommand{\linearcombination}{\lambda}                                                           % linear combination
+        \newcommand{\Map}{\mathrm{Map}}                                                                    % set of maps
+        \newcommand{\map}{\rightarrow}                                                                     % map
+        \newcommand{\Minor}{\mathrm{Minor}}                                                                % minor
+        \newcommand{\Mod}[1]{\mathbf{Mod}({#1})}                                                           % category of modules
+        \newcommand{\modspan}[2][]{\langle #2 \rangle_{#1}}                                                % spanned submodule
+        \newcommand{\multiplicity}[1][]{\mathrm{m}_{#1}}                                                   % multiplicity of a root of a polynomial
+        \newcommand{\Naturals}{\mathbb{N}}                                                                 % set of natural numbers
+        \newcommand{\nbd}{-}                                                                               % no-break-dash
+        \newcommand{\ncongruent}{\not\equiv}                                                               % not congruent modulo integer
+        \newcommand{\ndivides}{\nmid}                                                                      % not divides
+        \newcommand{\Neighbourhood}{\Upgamma}                                                              % neighbourhood
+        \newcommand{\nsubobjecteq}{\nleq}                                                                  % not subobject
+        \newcommand{\PolynomialMaps}{\mathrm{Pol}}                                                         % polynomial maps
+        \newcommand{\PowerSet}{\mathrm{Pot}}                                                               % power set
+        \newcommand{\pr}{\mathrm{pr}}                                                                      % projection
+        \newcommand{\Primes}{\mathbb{P}}                                                                   % set of prime numbers
+        \newcommand{\QuadraticFormOfBilinearForm}{\mathrm{q}}                                              % quadratic form of a bilinear form
+        \newcommand{\QuasiIdentityMatrix}{\mathrm{Q}}                                                      % quasi identity matrix
+        \newcommand{\quo}{\mathrm{quo}}                                                                    % quotient morphism
+        \newcommand{\Rationals}{\mathbb{Q}}                                                                % set of rational numbers
+        \newcommand{\Reals}{\mathbb{R}}                                                                    % set of real numbers
+        \newcommand{\RepresentationMatrixColumns}[3]{\mathrm{M}_{#2, #1}(#3)}                              % representation matrix, column conv.
+        \newcommand{\RowAddition}[3]{\mathrm{add}_{#1, #2, #3}}                                            % elementary row operation: addition
+        \newcommand{\RowAdditionMatrix}[3]{\mathrm{Add}_{#1, #2, #3}}                                      % elementary matrix: row addition
+        \newcommand{\rowechelonindex}{\mathrm{ech}}                                                        % row echelon index
+        \newcommand{\RowInterpretation}[2]{\psi_{#2, #1}}                                                  % row interpretation of a matrix
+        \newcommand{\RowMultiplication}[2]{\mathrm{mul}_{#1, #2}}                                          % elementary row operation: multiplication
+        \newcommand{\RowMultiplicationMatrix}[2]{\mathrm{Mul}_{#1, #2}}                                    % elementary matrix: row multiplication
+        \newcommand{\RowSpace}{\mathrm{Row}}                                                               % row space
+        \newcommand{\RowSwap}[2]{\mathrm{sw}_{#1, #2}}                                                     % elementary row operation: swapping
+        \newcommand{\RowSwapMatrix}[2]{\mathrm{Sw}_{#1, #2}}                                               % elementary matrix: row swapping
+        \newcommand{\set}[1]{\{#1\}}                                                                       % set
+        \newcommand{\SolutionSet}{\mathrm{Sol}}                                                            % solution set of system of linear equations
+        \newcommand{\SolutionSetOfLinearRecurrence}{\mathrm{SolRec}}                                       % solution set of (system of) linear recurrence(s)
+        \newcommand{\standardbasis}[1][]{\mathrm{e}_{#1}}                                                  % standard basis
+        \newcommand{\subobject}{<}                                                                         % proper subobject
+        \newcommand{\subobjecteq}{\leq}                                                                    % subobject
+        \newcommand{\SymmetricGroup}[1]{\mathrm{S}_{#1}}                                                   % symmetric group
+        \newcommand{\tr}{\mathrm{tr}}                                                                      % transpose
+        \newcommand{\union}{\cup}                                                                          % union
+        \newcommand{\Units}[1]{{#1}^{\times}}                                                              % group of units
+        \newcommand{\VandermondeMatrix}{\mathrm{V}}                                                        % Vandermonde matrix
+        \newcommand{\Vect}[1]{\mathbf{Vec}({#1})}                                                          % category of vector spaces
+        \newcommand{\Vertices}{\mathrm{V}}                                                                 % set of vertices in a graph
+        \newcommand{\weight}{\mathrm{wt}}                                                                  % weight
+        \newcommand{\xor}{\mathbin{\mathrm{xor}}}                                                          % xor
+        \renewcommand{\div}{\mathbin{\mathrm{div}}}                                                        % div operation
+        \renewcommand{\Im}{\mathop{\mathrm{Im}}}                                                           % imaginary part of a complex number
+        \renewcommand{\Re}{\mathop{\mathrm{Re}}}                                                           % real part of a complex number
+
+        \renewcommand{\u}{\"u}
+        \renewcommand{\o}{\"o}
+        \renewcommand{\a}{\"a}
+        \newcommand{\U}{\"U}
+        \renewcommand{\O}{\"O}
+        \newcommand{\A}{\"A}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+<<range .Sheets>>
+<<range .Exercices>>
+\item[\textbf{<<.Number>>}] <<.LaTeX>>
+        <<if .Tasks>>
+        \begin{itemize}
+        <<range .Tasks>>
+                \item <<.LaTeX>>
+                <<if eq .Type "multipleChoice" "choice">>
+                \begin{<<.Type>>}
+                        << range .Answers >>
+                        << if ne . "-" >>
+                        \item <<.>>
+                        << end >>
+                        << end >>
+                \end{<<.Type>>}
+                <<end>>
+                \begin{mdframed}Solution: \textcolor{white}{\seqsplit{<< $.Escape .CorrectAnswers>>}}\end{mdframed}
+        <<end>>
+        \end{itemize}
+        <<end>>
+<<end>>
+<<end>>
+\end{enumerate}
+\end{document}
