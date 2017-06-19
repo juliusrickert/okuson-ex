@@ -9,7 +9,7 @@ Because OKUSON displays different exercises for all users, another function of o
 
 1. [Get and install go](https://golang.org/doc/install)
 2. `git clone https://github.com/ninov/okuson-ex`
-3. `okuson-ex`
+3. `cd okuson-ex`
 4. `go get`
 5. `go build`
 
